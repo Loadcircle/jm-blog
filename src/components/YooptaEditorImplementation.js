@@ -56,6 +56,7 @@ export const YooptaEditorImplementation = () => {
     };
     return (
         <YooptaEditor
+            style={{ width: "100%"}}
             editor={editor}
             plugins={PLUGINS}
             tools={TOOLS}
