@@ -9,15 +9,34 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@yoopta/accordion": "^4.9.4",
+    "@yoopta/action-menu-list": "^4.9.4",
+    "@yoopta/blockquote": "^4.9.4",
+    "@yoopta/code": "^4.9.4",
+    "@yoopta/divider": "^4.9.4",
+    "@yoopta/editor": "^4.9.4",
+    "@yoopta/embed": "^4.9.4",
+    "@yoopta/file": "^4.9.4",
+    "@yoopta/headings": "^4.9.4",
+    "@yoopta/image": "^4.9.4",
+    "@yoopta/link": "^4.9.4",
+    "@yoopta/marks": "^4.9.4",
+    "@yoopta/paragraph": "^4.9.4",
+    "@yoopta/table": "^4.9.4",
+    "@yoopta/toolbar": "^4.9.4",
+    "next": "15.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.1.5"
+    "slate": "^0.102.0",
+    "slate-react": "^0.102.0",
+    "sonner": "^1.7.2"
   },
   "devDependencies": {
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "@eslint/eslintrc": "^3",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9",
     "eslint-config-next": "15.1.5",
-    "@eslint/eslintrc": "^3"
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17"
   }
 }
