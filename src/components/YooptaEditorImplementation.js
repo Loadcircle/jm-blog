@@ -18,7 +18,7 @@ import Toolbar, { DefaultToolbarRender } from '@yoopta/toolbar';
 import { Bold, Italic, CodeMark, Underline, Strike, Highlight } from '@yoopta/marks';
 import LinkTool, { DefaultLinkToolRender } from '@yoopta/link-tool';
 import { html, markdown } from '@yoopta/exports';
-import { uploadToCloudinary } from "@/helpers/helpers";
+import { uploadToCloudinary } from "@/helpers/FEDHelpers";
 
 const MARKS = [Bold, Italic, CodeMark, Underline, Strike, Highlight];
 
@@ -82,13 +82,24 @@ const PLUGINS = [
         },
       }
     })
-  ];
+];
   
-export const YooptaEditorImplementation = () => {
+export const YooptaEditorImplementation = ({savePost, setTitle, isSaving}) => {
     const editor = useMemo(() => createYooptaEditor(), []);
     const [value, setValue] = useState();
     const [markdownTestValue, setMarkdownTestValue] = useState();
     const [htmlTestValue, seHtmlTestValue] = useState();
+    const savePostHandler = () => {
+      const data = serializeContent();
+      savePost(data);
+    }
+    // console.log(editor);
+    // from @yoopta content to content
+    const serializeContent = () => {
+      const data = editor.getEditorValue();
+      const markdownString = markdown.serialize(editor, data);
+      return markdownString;
+    };
 
       // from content to @yoopta content
     const deserializeContent = () => {
@@ -101,20 +112,11 @@ export const YooptaEditorImplementation = () => {
       console.log(valueHtml);
       // editor.setEditorValue(value);
     };
-
-    // from @yoopta content to content
-    const serializeContent = () => {
-      const data = editor.getEditorValue();
-      const markdownString = markdown.serialize(editor, data);
-      const htmlString = html.serialize(editor, data);
-      console.log('markdown string', markdownString);
-      setMarkdownTestValue(markdownString)
-      console.log('html string', htmlString);
-      seHtmlTestValue(markdownString)
-    };
   
     const onChange = (value) => {
-          setValue(value);
+        setValue(value);  
+        const currentTitle = document.querySelector(".yoopta-editor h1")?.textContent;
+        setTitle(currentTitle);
     };
     return (
       <>
@@ -128,8 +130,13 @@ export const YooptaEditorImplementation = () => {
             value={value}
             onChange={onChange}
         />
-        <button onClick={serializeContent}>Serialize</button>
-        <button onClick={deserializeContent}>Deserialize</button>
+        <button 
+          disabled={isSaving} 
+          onClick={savePostHandler}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50"
+        >
+          Save post
+        </button>
       </>
     )
 }
