@@ -4,7 +4,8 @@ import YooptaEditor, { createYooptaEditor } from "@yoopta/editor";
 import { MARKS, PLUGINS, TOOLS } from "@/helpers/yooptaBuilders";
 
 
-export const YooptaEditorImplementation = ({savePost, setTitle, isSaving}) => {
+export const YooptaEditorImplementation = ({savePost, setTitle, isSaving, content}) => {
+    console.log(content)
     const editor = useMemo(() => createYooptaEditor(), []);
     const [value, setValue] = useState();
     
@@ -14,10 +15,17 @@ export const YooptaEditorImplementation = ({savePost, setTitle, isSaving}) => {
     }
   
     const onChange = (value) => {
-        setValue(value);  
+        // setValue(value);  
         const currentTitle = document.querySelector(".yoopta-editor h1")?.textContent;
         setTitle(currentTitle);
-    };
+    }; 
+
+    // useState(() => {
+    //   if(content){
+    //     // setValue(content);
+    //     editor.setEditorValue(content);
+    //   }
+    // }, [content]);
     return (
       <>
         <YooptaEditor
@@ -27,7 +35,7 @@ export const YooptaEditorImplementation = ({savePost, setTitle, isSaving}) => {
             tools={TOOLS}
             marks={MARKS}
             placeholder="Type something"
-            value={value}
+            value={content}
             onChange={onChange}
         />
         <button 

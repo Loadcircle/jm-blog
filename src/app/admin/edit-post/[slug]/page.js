@@ -1,3 +1,3 @@
-import { CreatePostPage as Page } from "@/views/admin/CreatePostPage";
+import { EditPostPage as Page } from "@/views/admin/EditPostPage";
 
 export default Page;

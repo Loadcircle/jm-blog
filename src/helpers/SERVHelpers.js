@@ -46,7 +46,7 @@ export const getFiles = () => {
     try {
         const files = fs.readdirSync(postsDir);
 
-        return files.map((file) => file.replace('.md', ''));
+        return files.map((file) => file.replace('.json', ''));
     } catch (error) {
         throw new Error(`Failed to get files: ${error.message}`);
     }

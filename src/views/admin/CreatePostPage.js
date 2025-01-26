@@ -1,13 +1,13 @@
 'use client'
 import { YooptaEditorImplementation } from "@/components/YooptaEditorImplementation";
 import { stringToSlug } from "@/helpers/FEDHelpers";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 
 
-export const CreatePostPage = () => {
+export const CreatePostPage = ({post}) => {
   const [isSaving, setIsSaving] = useState(false);
-  const [title, setTitle] = useState(null);
-
+  const [title, setTitle] = useState(post?.title);
+  const content = post?.content;
   const savePost = async (data) => {
     setIsSaving(true);
     
@@ -33,6 +33,7 @@ export const CreatePostPage = () => {
 
     setIsSaving(false);
   }
+
   return (
       <div className="md:py-[100px] md:pl-[200px] md:pr-[80px] px-[20px] pt-[80px] pb-[40px] flex justify-center flex-col items-center">
         <div className="w-full mb-4">
@@ -44,7 +45,7 @@ export const CreatePostPage = () => {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <YooptaEditorImplementation savePost={savePost} isSaving={isSaving} setTitle={setTitle}/>
+        <YooptaEditorImplementation savePost={savePost} isSaving={isSaving} setTitle={setTitle} content={content}/>
       </div>
   )
 }
