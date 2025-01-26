@@ -6,18 +6,17 @@ export const saveFile = (fileName, content) => {
         throw new Error('Invalid file name');
     }
 
-    if (!content || typeof content !== 'string') {
-        throw new Error('Invalid content');
-    }
-
-    const filePath = path.join(process.cwd(), 'postsMarkdowns', `${fileName}.md`);
+    // if (!content || typeof content !== 'string') {
+    //     throw new Error('Invalid content');
+    // }
+    const filePath = path.join(process.cwd(), 'postsMarkdowns', `${fileName}.json`);
 
     try {
         // Create folder if it doesn't exist
         fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
-        // Write file content
-        fs.writeFileSync(filePath, content);
+        // Convert content to JSON string and write file content
+        fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
 
         return filePath;
     } catch (error) {
@@ -58,7 +57,7 @@ export const getFile = (fileName) => {
         throw new Error('Invalid file name');
     }
 
-    const filePath = path.join(process.cwd(), 'postsMarkdowns', `${fileName}.md`);
+    const filePath = path.join(process.cwd(), 'postsMarkdowns', `${fileName}.json`);
 
     try {
         const content = fs.readFileSync(filePath, 'utf8');

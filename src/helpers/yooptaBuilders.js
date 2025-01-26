@@ -1,8 +1,4 @@
-'use client'
-import React, { useEffect, useMemo, useState } from "react";
 import NextImage from 'next/image';
-import YooptaEditor, { createYooptaEditor } from "@yoopta/editor";
-import { markdown } from '@yoopta/exports';
 import Paragraph from "@yoopta/paragraph";
 import Blockquote from '@yoopta/blockquote';
 import Accordion from '@yoopta/accordion';
@@ -14,6 +10,28 @@ import Link from '@yoopta/link';
 import Table from '@yoopta/table';
 import Divider from '@yoopta/divider';
 import { HeadingOne, HeadingThree, HeadingTwo } from '@yoopta/headings';
+import ActionMenu, { DefaultActionMenuRender } from '@yoopta/action-menu-list';
+import Toolbar, { DefaultToolbarRender } from '@yoopta/toolbar';
+import { Bold, Italic, CodeMark, Underline, Strike, Highlight } from '@yoopta/marks';
+import LinkTool, { DefaultLinkToolRender } from '@yoopta/link-tool';
+import { uploadToCloudinary } from "@/helpers/FEDHelpers";
+
+const MARKS = [Bold, Italic, CodeMark, Underline, Strike, Highlight];
+
+const TOOLS = {
+  Toolbar: {
+    tool: Toolbar,
+    render: DefaultToolbarRender,
+  },
+  ActionMenu: {
+    tool: ActionMenu,
+    render: DefaultActionMenuRender,
+  },
+  LinkTool: {
+    tool: LinkTool,
+    render: DefaultLinkToolRender,
+  },
+};
 
 const PLUGINS = [
     Paragraph,
@@ -62,22 +80,4 @@ const PLUGINS = [
     })
 ];
 
-export const YooptaReader = ({content}) => {
-    const yooptaContent = JSON.parse(content);
-    const editor = useMemo(() => createYooptaEditor(), []);
-
-  return (
-    <div>
-        <YooptaEditor
-            style={{ width: "100%"}}
-            editor={editor}
-            plugins={PLUGINS}
-            placeholder="Type something"
-            value={yooptaContent}
-            autoFocus
-            readOnly
-        />
-        {/* <div dangerouslySetInnerHTML={{ __html: htmlValue }} /> */}
-    </div>
-  )
-}
+export { MARKS, PLUGINS, TOOLS };

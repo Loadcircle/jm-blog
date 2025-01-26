@@ -1,4 +1,5 @@
 import { YooptaReader } from '@/components/YooptaReader';
+import Link from 'next/link';
 import React from 'react'
 
 export const PostPage = async ({ params }) => {
@@ -16,6 +17,7 @@ export const PostPage = async ({ params }) => {
   return (
       <div>
         <YooptaReader content={post.content}/>
+        <Link href={`/admin/edit-post/${slug}`}>Editar</Link>
       </div>
   );
 };
