@@ -20,40 +20,37 @@ export default async function HomePage() {
 
   return (
     <>
-      <main>
-        {/* Introducción */}
-        <section className="intro">
-          <h1>Bienvenido a mi Blog</h1>
-          <p>
-            Explora los últimos artículos, tutoriales y temas destacados sobre
-            [tema del blog].
+      <main className="min-h-screen">
+        {/* Banner de Introducción */}
+        <section className="intro h-screen flex flex-col justify-center items-center text-center bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+          <h1 className="text-5xl font-bold mb-6">Bienvenido a mi Blog</h1>
+          <p className="text-xl max-w-2xl mx-auto">
+            Explora los últimos artículos, tutoriales y temas destacados sobre [tema del blog].
           </p>
         </section>
 
         {/* Lista de Posts Destacados */}
-        <section className="highlighted-posts p-4 bg-gray-100">
-          <h2 className="text-xl font-bold mb-4">Posts Destacados</h2>
-          <ul className="space-y-4">
-            {posts.map((post) => (
-              <li key={post.id} className="p-4 border rounded-md shadow-md">
-                <Link href={`/post/${post}`}>
-                  <h3 className="text-lg font-semibold">{post}</h3>
-                  <p className="text-gray-700">{post.excerpt}</p>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <section className="highlighted-posts py-12 px-4 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8">Posts Destacados</h2>
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post, index) => (
+                <li
+                  key={post}
+                  className={`p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105 ${
+                    index === 0 ? "md:col-span-2 lg:col-span-3 bg-white" : "bg-white"
+                  }`}
+                >
+                  <Link href={`/post/${post}`}>
+                    <h3 className="text-2xl font-semibold mb-2">{post}</h3>
+                    <p className="text-gray-600">{post.excerpt}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
       </main>
-        <Image
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        
-        <Link href="/admin/login" className="hover:text-blue-200">Login</Link>
     </>
   );
 }

@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from 'sonner';
 import "./globals.css";
+import Link from "next/link";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +25,22 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <nav className="fixed top-0 left-0 right-0 bg-white border-t border-gray-200 py-4">
+          <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
+            <Link href="/">
+              <Image
+                src="/next.svg"
+                alt="Next.js logo"
+                width={180}
+                height={38}
+                priority
+              />
+            </Link>
+            <Link href="/admin/login" className="text-blue-600 hover:text-blue-800 transition-colors">
+              Login
+            </Link>
+          </div>
+        </nav>
         <Toaster closeButton />
         {children}
       </body>
