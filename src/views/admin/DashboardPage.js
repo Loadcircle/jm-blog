@@ -11,7 +11,7 @@ const posts = [
 export const DashboardPage = () => {
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 pt-[80px]">
       {/* Sidebar */}
       <aside className="fixed inset-y-0 left-0 w-64 bg-white shadow-lg p-6">
         <h2 className="text-xl font-bold mb-8">Admin Dashboard</h2>
@@ -44,9 +44,9 @@ export const DashboardPage = () => {
         {/* Header */}
         <header className="flex justify-between items-center mb-8">
           <h1 className="text-2xl font-bold">Bienvenido, Admin</h1>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+          <Link href="/admin/create-post" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
             Crear Nuevo Post
-          </button>
+          </Link>
         </header>
 
         {/* Resumen General */}

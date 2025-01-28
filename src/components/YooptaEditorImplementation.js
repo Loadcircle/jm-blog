@@ -5,7 +5,6 @@ import { MARKS, PLUGINS, TOOLS } from "@/helpers/yooptaBuilders";
 
 
 export const YooptaEditorImplementation = ({savePost, setTitle, isSaving, content}) => {
-    console.log(content)
     const editor = useMemo(() => createYooptaEditor(), []);
     const [value, setValue] = useState();
     
@@ -29,6 +28,7 @@ export const YooptaEditorImplementation = ({savePost, setTitle, isSaving, conten
     return (
       <>
         <YooptaEditor
+            className="border rounded w-full p-4 mb-4"
             style={{ width: "100%"}}
             editor={editor}
             plugins={PLUGINS}
